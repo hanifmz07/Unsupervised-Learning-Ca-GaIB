@@ -6,18 +6,19 @@ class KMeans:
     def __init__(self, n_clusters=5, max_iter=300):
         self._n_clusters = n_clusters
         self._max_iter = max_iter
+        self.centroids = None
         self.labels = None
 
     def fit(self, X):
-        centroids = self._initialize_centroids(X)
+        self.centroids = self._initialize_centroids(X)
         itr = 0
         zero_diff_itr = 0
 
         while itr < self._max_iter and zero_diff_itr <= 10:
             for label in sorted(np.unique(self.labels)):
                 indices = np.where(self.labels == label)
-                centroids[int(label)] = X.loc[indices].mean()
-            diff = self._label_data(X, centroids)
+                self.centroids[int(label)] = X.loc[indices].mean()
+            diff = self._label_data(X, self.centroids)
             itr += 1
             if diff == 0:
                 zero_diff_itr += 1
