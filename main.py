@@ -13,7 +13,7 @@ while True:
         print("Masukan tidak valid")
     else:
         break
-    
+
 print("Masukkan dataset yang ingin digunakan:")
 filename = input()
 
@@ -28,7 +28,7 @@ if algo == 3:
             print("Masukan tidak sesuai (eps > 0)")
         else:
             break
-    
+
     while True:
         print("Masukkan minimal points (min_samples >= 1):")
         min_samples = int(input())
@@ -37,7 +37,7 @@ if algo == 3:
             print("Masukan tidak sesuai (min_samples >= 1)")
         else:
             break
-    
+
 else:
     while True:
         print("Masukkan nilai k (k >= 1):")
@@ -46,7 +46,7 @@ else:
             print("Masukan tidak sesuai (k >= 1)")
         else:
             break
-    
+
     if algo == 1:
         model = KMeans(n_clusters=k)
     elif algo == 2:
@@ -54,6 +54,6 @@ else:
 
 model.fit(X)
 print("\n================================= RESULT =================================")
-print(model.labels)
-X['label'] = model.labels
+print(f"Labels = {model.labels}")
+X["label"] = model.labels
 print(X)
